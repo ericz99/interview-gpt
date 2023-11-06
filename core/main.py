@@ -4,7 +4,7 @@ import asyncio
 async def main():
     print('Running Main!')
     rec = Recorder('/output')
-    await rec.on_record_system(10)
+    await rec.on_record_system()
 
 
 if __name__ == "__main__":

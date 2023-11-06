@@ -23,7 +23,7 @@ class Transcriber():
         # load english model only
         model = whisper.load_model(f'{self.model}.en')
         result = model.transcribe(f, fp16=torch.cuda.is_available())
-        print(result)
+        print(f'{result["text"]} \n')
 
         with open('transcription.txt', 'a') as f:
             f.write(f'{result["text"]} \n')
