@@ -26,7 +26,7 @@ class Transcriber():
         # create new messages to be consumed
         message = Message(
             f'''
-            Please fix this transcript:
+            Please fix this transcript, like indentation, grammar, and etc:
 
             {self._result_text}
             ''',
@@ -36,7 +36,14 @@ class Transcriber():
 
         agent = ChatAgent()
         resp = await agent.ask(message)
-        print(resp)
+        
+        if resp is not None:
+            content = resp.choices[0].message.content
+
+            # update transcript, for more readible content
+            with open('transcription.txt', 'w') as f:
+                f.write(content)
+
 
     async def transcribe(self, f):
         # load english model only

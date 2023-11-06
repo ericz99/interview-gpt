@@ -6,6 +6,7 @@ from transcribe import Transcriber
 import numpy as np
 from queue import Queue
 import os
+from datetime import datetime, timedelta
 
 class RecorderConstant:
     RATE = 44100
@@ -50,6 +51,7 @@ class Recorder():
         it will save and download frames
         '''
         print('Recording...')
+        idle_time = 3
 
         with sc.get_microphone(id=(str(sc.default_speaker().name)), include_loopback=True).recorder(samplerate=RecorderConstant.RATE, channels=RecorderConstant.CHANNELS) as mic:
             while True:
@@ -63,7 +65,6 @@ class Recorder():
                         res = []
 
                         while not self.queue.empty():
-                            print('Getting item in queue')
                             frame = self.queue.get()
                             res.append(frame)
 

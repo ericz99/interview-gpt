@@ -27,5 +27,4 @@ class ChatAgent():
         self.messages.append(_messages)
 
         # generate message
-        res = await self.ai.generate(_messages)
-        print(res)
+        return await self.ai.generate(_messages)
