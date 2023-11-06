@@ -1,23 +1,24 @@
 import os
-import openai
-from base import BaseAIModel
+from openai import AsyncOpenAI
+from .base import BaseAIModel
 from utils import get_only_content_token_length, get_token_model_limit
+from dotenv import load_dotenv
 
-# set up configuration
-openai.organization = "YOUR_ORG"
-openai.api_key = os.getenv('OPENAI_API_KEY')
+load_dotenv()
 
 class OpenAIModel(BaseAIModel):
     def __init__(self, model: str = 'gpt-3.5-turbo-0613') -> None:
         super().__init__()
         self.model = model
-        self.ai = openai
+        self.ai = AsyncOpenAI(
+            api_key=os.getenv("OPENAI_API_KEY")
+        )
 
     '''
     Generate embedding vector
     '''
     async def generate_embedding(self, input: str):
-        response = self.ai.Embedding.create(
+        response = await self.ai.Embedding.create(
             input=input,
             model="text-embedding-ada-002"
         )
@@ -35,9 +36,13 @@ class OpenAIModel(BaseAIModel):
         model_token_limit = get_token_model_limit(self.model)
         completion_token = model_token_limit - num_token_in_ctx
 
-        response = self.ai.ChatCompletion.create(
+        # format message 
+        _messages = [{'content': message.content, 'role': message.role} for message in messages]
+
+        # generate chat
+        response = await self.ai.chat.completions.create(
             model=self.model,
-            messages=messages,
+            messages=_messages,
             max_tokens=completion_token,
             n=1,
             top_p=1.0,

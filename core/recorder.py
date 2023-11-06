@@ -37,9 +37,18 @@ class Recorder():
         await asyncio.create_task(self.trans.transcribe(file))
         self._start_chuck += 1
         await asyncio.sleep(0.25)
-        # os.remove(file)
+        os.remove(file)
+
+    async def on_record_session(self):
+        pass
 
     async def on_record_system(self):
+        '''
+        on_record_system:
+        method to record system device, such as speaker.
+        After certain time if no sound is being produced in the speaker,
+        it will save and download frames
+        '''
         print('Recording...')
 
         with sc.get_microphone(id=(str(sc.default_speaker().name)), include_loopback=True).recorder(samplerate=RecorderConstant.RATE, channels=RecorderConstant.CHANNELS) as mic:
@@ -60,10 +69,8 @@ class Recorder():
 
                         if not len(res) == 0:
                             res_data = np.concatenate(res, dtype='float64')
-                            # save to file
                             await self.save_to_file(res_data)
-                        else:
-                            print('nothing')
+                            await asyncio.create_task(self.trans.fix_transcript())
 
                     await asyncio.sleep(0)
                 except KeyboardInterrupt:

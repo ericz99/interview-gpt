@@ -4,6 +4,8 @@ from queue import Queue
 from dataclasses import dataclass
 import asyncio
 import os
+from agent.chat import ChatAgent
+from prompt.message import Message
 
 @dataclass
 class Transcriber():
@@ -11,6 +13,7 @@ class Transcriber():
         self.queue = Queue()
         self.model = model
         self.output_path = './output'
+        self._result_text = ''
 
     def load_all_audio(self):
         # grab all files in the output
@@ -19,10 +22,27 @@ class Transcriber():
         for file in files:
             self.queue.put(file)
 
+    async def fix_transcript(self):
+        # create new messages to be consumed
+        message = Message(
+            f'''
+            Please fix this transcript:
+
+            {self._result_text}
+            ''',
+            role="user",
+            name=None
+        )
+
+        agent = ChatAgent()
+        resp = await agent.ask(message)
+        print(resp)
+
     async def transcribe(self, f):
         # load english model only
         model = whisper.load_model(f'{self.model}.en')
         result = model.transcribe(f, fp16=torch.cuda.is_available())
+        self._result_text += f'{result["text"]} \n'
         print(f'{result["text"]} \n')
 
         with open('transcription.txt', 'a') as f:

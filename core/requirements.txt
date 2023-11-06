@@ -8,5 +8,7 @@ scipy
 soundcard
 watchdog
 openai
+pydantic
+python-dotenv
 
 git+https://github.com/openai/whisper.git 
