@@ -1,0 +1,12 @@
+pyaudio
+requests
+SpeechRecognition 
+torch
+numpy
+sounddevice
+scipy
+soundcard
+watchdog
+openai
+
+git+https://github.com/openai/whisper.git 
