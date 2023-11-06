@@ -26,7 +26,7 @@ class Transcriber():
         # create new messages to be consumed
         message = Message(
             f'''
-            Please fix this transcript, like indentation, grammar, and etc:
+            Please fix this transcript, but try not to change any wording:
 
             {self._result_text}
             ''',
