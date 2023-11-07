@@ -10,5 +10,10 @@ watchdog
 openai
 pydantic
 python-dotenv
+pinecone-client
+cuid2
+pandas
+pypdf
+pdfminer.six
 
 git+https://github.com/openai/whisper.git 

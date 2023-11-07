@@ -1,3 +1,3 @@
 ## InterviewGPT
 
-> Your own interview assistant companion
+> Your personal interview assistant companion
