@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "platform"
+version = "0.1.0"
+description = ""
+authors = ["Eric Zhang <zhangeric991@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "<3.13, >= 3.9"
+cuid2 = "^2.0.0"
+pyaudio = "^0.2.14"
+scipy = "^1.11.3"
+requests = "^2.31.0"
+torch = "^2.1.0"
+numpy = "^1.26.1"
+sounddevice = "^0.4.6"
+soundcard = "^0.4.2"
+openai = "^1.1.1"
+pydantic = "^2.4.2"
+python-dotenv = "^1.0.0"
+pinecone-client = "^2.2.4"
+pypdf = "^3.17.0"
+pdfminer-six = "^20221105"
+uvicorn = "^0.24.0.post1"
+python-multipart = "^0.0.6"
+pytest = "^7.4.3"
+alembic = "^1.12.1"
+sqlalchemy = "^2.0.23"
+gunicorn = "^21.2.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.6.1"
+black = "^23.10.1"
+isort = "^5.12.0"
+autoflake = "^2.2.1"
+flake8 = "^6.1.0"
+pytest = "^7.4.3"
+sqlalchemy-stubs = "^0.4"
+pytest-cov = "^4.1.0"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+line_length = 88
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
