@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "platform"
+name = "interview-gpt"
 version = "0.1.0"
 description = ""
 authors = ["Eric Zhang <zhangeric991@gmail.com>"]
@@ -21,28 +21,15 @@ python-dotenv = "^1.0.0"
 pinecone-client = "^2.2.4"
 pypdf = "^3.17.0"
 pdfminer-six = "^20221105"
-uvicorn = "^0.24.0.post1"
-python-multipart = "^0.0.6"
+soundfile = "^0.12.1"
+openai-whisper = {git = "https://github.com/openai/whisper.git"}
+tiktoken = "^0.5.1"
+typer = "^0.9.0"
+termcolor = "^2.3.0"
 pytest = "^7.4.3"
-alembic = "^1.12.1"
-sqlalchemy = "^2.0.23"
-gunicorn = "^21.2.0"
-
-[tool.poetry.group.dev.dependencies]
 mypy = "^1.6.1"
-black = "^23.10.1"
-isort = "^5.12.0"
-autoflake = "^2.2.1"
-flake8 = "^6.1.0"
-pytest = "^7.4.3"
-sqlalchemy-stubs = "^0.4"
-pytest-cov = "^4.1.0"
+ruff = "^0.1.4"
 
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-line_length = 88
 
 [build-system]
 requires = ["poetry-core"]
