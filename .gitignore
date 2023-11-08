@@ -293,3 +293,5 @@ dist
 .vscode
 .mypy_cache
 docker-stack.yml
+todo.txt
+output

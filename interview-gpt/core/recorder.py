@@ -31,13 +31,15 @@ class Recorder():
 
     async def save_to_file(self, data, is_session = False):
         print('Saving to file')
+
+        _path = os.path.abspath(os.path.join(os.path.__file__, '..', '..', 'output'))
         
         if is_session:
             # writing to output wav, change data=data[:, 0] -> data=data if you want multiple channels, (recommended keeping multi, sound better)
-            file = f'./output/{RecorderConstant.OUTPUT_WAV}-session.wav'
+            file = f'{_path}/{RecorderConstant.OUTPUT_WAV}-session.wav'
         else:
             # writing to output wav, change data=data[:, 0] -> data=data if you want multiple channels, (recommended keeping multi, sound better)
-            file = f'./output/{RecorderConstant.OUTPUT_WAV}-c{self._start_chuck}.wav'
+            file = f'{_path}/{RecorderConstant.OUTPUT_WAV}-c{self._start_chuck}.wav'
 
         sf.write(file=file, samplerate=RecorderConstant.RATE, data=data)
         print(f'Finished Recording... Chuck: {self._start_chuck}')
