@@ -4,6 +4,10 @@
 
 ## Setup 
 
+Setting up Development:
+
+> Assuming you have Python 3.9+, and have installed poetry
+
 - `git clone https://github.com/ericz99/interview-gpt.git <desired dest>`
 
 - Run `poetry install` to install all dependency
