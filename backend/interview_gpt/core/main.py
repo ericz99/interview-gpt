@@ -12,9 +12,6 @@ pinecone.init(
     api_key=os.getenv("PINECONE_API_KEY"), environment=os.getenv("PINECONE_ENVIRONMENT")
 )
 
-# https://github.com/orgs/python-poetry/discussions/1135
-# https://stackoverflow.com/questions/66474844/import-local-package-during-poetry-run
-
 async def main():
     print(test())
     logger.debug("Running Main!")
