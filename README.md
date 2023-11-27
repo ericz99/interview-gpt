@@ -1,5 +1,7 @@
 ## InterviewGPT
 
+WIP 
+
 > Your personal interview assistant companion
 
 ## Setup 
@@ -14,7 +16,15 @@ Setting up Development:
 
 - Initialize environment `poetry shell`
 
-- Run main.py `cd interview-gpt/core && poetry run python main.py`
+- How to run?
+    - You can run with web / server
+        - Navigate both `/backend/interview_gpt/server` and `/web`
+            - On backend run `uvicorn main:app --reload`
+            - On web run `pnpm run dev`
+
+    - Or just run the core feature
+        - Navigate both `/backend/interview_gpt/core`
+            - Run `poetry run python main.py`
 
 **API Key**
 
@@ -22,9 +32,20 @@ Setting up Development:
     - Create a copy of `.env.template` named `.env`
     - Add your OPENAI_API_KEY in .env
 
+## Development
+
+- This is currently project not optimized for performance as of now. 
+- Working on writing a simple api to create new instance of recorders, and new session
+- trying to add VAD (Voice activity detection) instead of relying on RMS
+- currently this can only spin up one instance of recorder, and it uses socketio to send data from backend to client
+- sometime theres like a delay when speaking to the mic, then couple second later it process the audio data
+
+tldr: not slow nor fast, but works good and transcription is on point. Needs optimized using VAD (Voice activity detection)
+
 ## Usage
 
 After running the script, the program will start listening to system audio (eg: Speaker), and will record + create .wav file + transcript for you. After,
 the AI will read your .wav to create a transcript then will help you answer question or response back about the transcript.
 
-WIP...
+![pic](/assets/pic1.png)
+
